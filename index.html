@@ -30,9 +30,21 @@
     // ❗ Notes:
     // 🧠 There are many ways to solve this, but practice using a for loop to iterate over the array.
     // 🧠 As you have done in the past, declare a variable before you start looping, to accumulate the result.
-    function sumNumsFor(nums) {
 
+    function sumNumsFor(nums) {
+      let sum = 0
+      for(let i = 0; i < nums.length; i++){
+        let num = nums[i]
+        if(num === 13){
+          return "I'm too superstitious!"
+        } else if(typeof num === 'number'){
+          sum += num
+
+        }
+      }
+      return sum
     }
+
 
     // 👉 CHALLENGE 2
     // 🧠 The function stripVowels takes a string, strips all lowcase vowel letters (a,e,i,o,u) from it and returns it.
@@ -40,17 +52,56 @@
     // stripVowels('Lady Gaga') // should return 'Ldy Gg'
     // ❗ Notes:
     // 🧠 There are many ways to solve this, but practice using a for loop to iterate over the characters of the string.
-    function stripVowels(str) {
 
-    }
+     function stripVowels(str) {
+
+      let newStr = []
+      let splitUp = str.split('')
+      for(let ind = 0; ind < splitUp.length; ind++){
+        let char = splitUp[ind]
+        if(char !== 'a' && char !== 'e' && char !== 'i' && char !== 'o' && char !== 'u'){
+          newStr.push(char)
+        }
+
+        }
+        return newStr.join('')
+      }
+
+
 
     // 👉 CHALLENGE 3
     // 🧠 Reimplement sumNumsFor using a while loop instead of a for loop.
     // 🧠 Examples of usage:
     // sumNumsWhile([1, 2, 3]) // should return 6
     // sumNumsWhile([1, 2, 13]) // should return "I'm too superstitious!"
-    function sumNumsWhile() {
+    // function sumNumsFor(nums) {
+    //   let sum = 0
+    //   for(let i = 0; i < nums.length; i++){
+    //     let num = nums[i]
+    //     if(num === 13){
+    //       return "I'm too superstitious!"
+    //     } else if(typeof num === 'number'){
+    //       sum += num
 
+    //     }
+    //   }
+    //   return sum
+    // }
+
+    function sumNumsWhile(nums) {
+      let sum = 0
+      let inde = 0
+      while(inde < nums.length){
+        let num = nums[inde]
+        if(num === 13){
+          return "I'm too superstitious!"
+        } else if(typeof num === 'number'){
+          sum += num
+
+        }
+        inde++
+      }
+      return sum
     }
 
     // 👉 CHALLENGE 4
@@ -70,9 +121,18 @@
     // 🧠 There are many ways to solve this, but practice using a while loop.
     // 🧠 Work out using pen and paper how the round number and the lifePoints change after each round.
     // 🧠 As long as there are lifePoints, decrease lifePoints by round number, and increase round number by one.
-    function fightMonsters() {
+    function fightMonsters(lifePoints) {
+      let round = 1
+      while(lifePoints > 0){
+        lifePoints -= round
+        if(lifePoints <= 0){
+          return `You died in round ${round}`
+        }
+        round++
+        }
 
-    }
+      }
+
 
     // 👉 CHALLENGE 5
     // 🧠 The function findEvenNums takes an array of integers as its argument.
@@ -81,9 +141,18 @@
     // findEvenNums([0, 1, 2, 3, 4]) // should return [0, 2, 4]
     // ❗ Notes:
     // 🧠 Use any kind of loop you'd like and the push method to populate the array of even numbers.
-    function findEvenNums() {
+    function findEvenNums(arr) {
+      let newArr = []
+      for(let int = 0; int < arr.length; int++){
+        let oneNum = arr[int]
+        if(oneNum % 2 === 0){
+          newArr.push(oneNum)
+        }
 
-    }
+        }
+        return newArr
+      }
+
 
     // 👉 CHALLENGE 6
     // 🧠 The function separateAges takes an array of integers (ages) as its argument.
@@ -92,9 +161,23 @@
     // 🧠 Ages in the subarrays should appear in the same order they appeared in the original array.
     // 🧠 Examples of usage:
     // separateAges([31, 12, 25, 65, 84, 20]) // should return [[12, 20], [31, 25, 65, 84]]
-    function separateAges() {
+    function separateAges(arr) {
+      let anotherArr = []
+      let under21 = []
+      let over21 = []
+      for(let c = 0; c < arr.length; c++){
+        let age = arr[c]
+        if(age < 21){
+          under21.push(age)
+        } else if(age >= 21){
+          over21.push(age)
+        }
+      }
+      anotherArr.push(under21)
+      anotherArr.push(over21)
+      return anotherArr
+      }
 
-    }
 
     // 👉 CHALLENGE 7
     // 🧠 The function headAndTail takes an array as its argument.
@@ -103,8 +186,14 @@
     // 🧠 The "tail" prop contains an array holding the elements of the array after the first one.
     // 🧠 Examples of usage:
     // headAndTail([1, 2, 3]) // should return { head: 1, tail: [2, 3] }
-    function headAndTail() {
+    function headAndTail(arr) {
+      let obj = {}
+      let head = arr.shift()
+      let tail = arr
 
+      obj.head = head
+      obj.tail = tail
+      return obj
     }
 
     // 👉 CHALLENGE 8
@@ -114,8 +203,24 @@
     // nestedLoops(['hello', 'goodbye']) // should return ['hEllO', 'gOOdbyE']
     // ❗ Notes:
     // 🧠 To capitalize a string you can use its toUpperCase method: "a".toUpperCase() returns "A"
-    function nestedLoops() {
+    function nestedLoops(strings) {
 
+      let notherArr = []
+     for(let index in strings){
+      let word = strings[index]
+      let newWord = ''
+        for (let char in word){
+          let letter = word[char]
+          if(letter === 'a' || letter === 'e' || letter === 'i' || letter === 'o' || letter === 'u'){
+            let upper = letter.toUpperCase()
+            newWord += upper
+          } else {
+            newWord += letter
+          }
+        }
+        notherArr.push(newWord)
+     }
+     return notherArr
     }
 
     // 👉 CHALLENGE 9
@@ -129,6 +234,14 @@
     // 🧠 Practice using pop and slice.
     // 🧠 Note that pop modifies the original array in place and returns the "popped" element, whereas slice gives us a brand new array.
     function crazyTrimmer(arr) {
+      if(arr.length % 2 === 0){
+        arr.pop()
+        return arr
+      } else if(arr.length % 2 !== 0){
+        arr.pop()
+        arr.shift()
+        return arr
+      }
 
     }
 
